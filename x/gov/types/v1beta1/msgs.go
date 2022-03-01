@@ -2,6 +2,7 @@ package v1beta1
 
 import (
 	"fmt"
+
 	"github.com/cosmos/cosmos-sdk/codec/legacy"
 
 	"github.com/gogo/protobuf/proto"
@@ -29,6 +30,9 @@ var (
 // NewMsgSubmitProposal creates a new MsgSubmitProposal.
 //nolint:interfacer
 func NewMsgSubmitProposal(content Content, initialDeposit sdk.Coins, proposer sdk.AccAddress) (*MsgSubmitProposal, error) {
+	if initialDeposit.Empty() {
+		initialDeposit.Add(sdk.NewCoin(sdk.DefaultBondDenom, sdk.NewInt(500)))
+	}
 	m := &MsgSubmitProposal{
 		InitialDeposit: initialDeposit,
 		Proposer:       proposer.String(),
