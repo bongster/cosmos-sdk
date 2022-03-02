@@ -11,15 +11,18 @@ import (
 
 // Default period for deposits & voting
 const (
-	DefaultPeriod time.Duration = time.Hour * 24 * 2 // 2 days
+	// DefaultPeriod time.Duration = time.Hour * 24 * 2 // 2 days
+	DefaultPeriod       time.Duration = time.Hour * 24 * 10 // 10 days
+	DefaultVotingPeriod time.Duration = time.Hour * 24 * 20 // 20 days
 )
 
 // Default governance params
 var (
+	// TODO: chagne this
 	DefaultMinDepositTokens = sdk.NewInt(10000000)
-	DefaultQuorum           = sdk.NewDecWithPrec(334, 3)
+	DefaultQuorum           = sdk.NewDecWithPrec(400, 3)
 	DefaultThreshold        = sdk.NewDecWithPrec(5, 1)
-	DefaultVetoThreshold    = sdk.NewDecWithPrec(334, 3)
+	DefaultVetoThreshold    = sdk.NewDecWithPrec(340, 3)
 )
 
 // Parameter store key
@@ -145,7 +148,7 @@ func NewVotingParams(votingPeriod time.Duration) VotingParams {
 
 // DefaultVotingParams default parameters for voting
 func DefaultVotingParams() VotingParams {
-	return NewVotingParams(DefaultPeriod)
+	return NewVotingParams(DefaultVotingPeriod)
 }
 
 // Equal checks equality of TallyParams
