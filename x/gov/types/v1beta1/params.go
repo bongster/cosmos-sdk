@@ -12,7 +12,8 @@ import (
 // Default period for deposits & voting
 const (
 	// DefaultPeriod time.Duration = time.Hour * 24 * 2 // 2 days
-	DefaultPeriod time.Duration = time.Hour * 24 * 10 // 10 days
+	DefaultPeriod       time.Duration = time.Hour * 24 * 10 // 10 days
+	DefaultVotingPeriod time.Duration = time.Hour * 24 * 20 // 20 days
 )
 
 // Default governance params
@@ -128,7 +129,7 @@ func NewVotingParams(votingPeriod time.Duration) VotingParams {
 
 // DefaultVotingParams default parameters for voting
 func DefaultVotingParams() VotingParams {
-	return NewVotingParams(DefaultPeriod)
+	return NewVotingParams(DefaultVotingPeriod)
 }
 
 // Equal checks equality of TallyParams
