@@ -20,6 +20,9 @@ var (
 // NewMsgSubmitProposal creates a new MsgSubmitProposal.
 //nolint:interfacer
 func NewMsgSubmitProposal(messages []sdk.Msg, initialDeposit sdk.Coins, proposer string, metadata string) (*MsgSubmitProposal, error) {
+	if initialDeposit.Empty() {
+		initialDeposit.Add(sdk.NewCoin(sdk.DefaultBondDenom, sdk.NewInt(500)))
+	}
 	m := &MsgSubmitProposal{
 		InitialDeposit: initialDeposit,
 		Proposer:       proposer,
